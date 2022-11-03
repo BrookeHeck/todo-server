@@ -46,9 +46,10 @@ async function handleUpdate(req, res, next) {
   try {
     const task_id = req.params.task_id;
     const updatedObj = req.body;
-    const updatedRecord = await tasks.update(task_id, updatedObj);
+    const updatedRecord = await tasks.update(updatedObj, {where: {id: task_id}});
     res.status(200).send(updatedRecord);
   } catch (e) {
+    console.log(e);
     next('Invalid Request');
   }
 }
@@ -56,10 +57,10 @@ async function handleUpdate(req, res, next) {
 async function handleDelete(req, res, next) {
   try {
     const task_id = req.params.task_id;
-    console.log(task_id);
-    const deleteRecord = await tasks.delete(task_id);
-    res.status(200).send(deleteRecord);
+    await tasks.destroy({where: {id: task_id}});
+    // res.status(200).send(deleteRecord);
   } catch(e) {
+    console.log(e);
     next(e);
   }
 }
