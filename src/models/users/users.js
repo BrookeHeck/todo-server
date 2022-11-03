@@ -50,7 +50,7 @@ const userModel = (sequelize, DataTypes) => {
     try {
       const parsedToken = jwt.verify(token, SECRET);
       const user = this.findONe({where: {username: parsedToken.username}});
-      if(user) { return user }
+      if(user) { return user; }
       throw new Error('User not found');
     } catch(e) {
       throw new Error(e.message);
