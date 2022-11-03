@@ -6,6 +6,10 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 3002;
 
+// db.sync().then(() => {
+//  start server
+// });
+
 try {
   server.start(PORT);
 } catch(e) {
