@@ -8,6 +8,7 @@ const serverError500 = require('./error-handlers/500');
 const logger = require('./auth/middleware/logger');
 
 const authRoutes = require('./../src/routes/authRouter');
+const v1Routes = require('./routes/v1');
 
 
 // basic setup of express server
@@ -19,6 +20,7 @@ require('dotenv').config();
 
 // routes
 app.use(authRoutes);
+app.use('/api/v1', v1Routes);
 
 // error handlers
 app.use('*', notFound404);
